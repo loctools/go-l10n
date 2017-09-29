@@ -1,0 +1,42 @@
+jobs
+{
+    :main
+    {
+        name                        Parse strings.json
+        id                          main
+
+        source_language             en
+        destination_languages       en-xa ru
+
+        source_dir                  ../strings
+        source_match                ^strings\.json$
+
+        db_source                   DBI:SQLite:dbname=db/translate.db3
+        db_namespace                desktop
+
+        ts_file_path                po/%LOCALE%/%FILE%.po
+        output_file_path            ../strings/strings-%LANG%.json
+        output_bom                  NO # Golang JSON Unmarshaller doesn't handle BOM
+
+        parser
+        {
+            plugin                  parse_chrome_json
+        }
+
+        callback_plugins
+        {
+            :test_language
+            {
+                plugin              test_language
+                phase               get_translation_pre
+
+                data
+                {
+                    language        en-xa
+                    transliterate   NO
+                    expand_length   YES
+                }
+            }
+        }
+    }
+}

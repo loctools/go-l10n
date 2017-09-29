@@ -1,0 +1,54 @@
+jobs
+{
+    :main
+    {
+        name                        Parse strings.go
+        id                          main
+
+        source_language             en
+        destination_languages       en-xa ru
+
+        source_dir                  ..
+        source_match                ^strings\.go$
+
+        db_source                   DBI:SQLite:dbname=db/translate.db3
+        db_namespace                webserver
+
+        ts_file_path                po/%LOCALE%/%FILE%.po
+        output_file_path            ../strings-%LANG%.go
+        output_bom                  NO
+
+        parser
+        {
+            plugin                  parse_go
+        }
+
+        callback_plugins
+        {
+            :test_language
+            {
+                plugin              test_language
+                phase               get_translation_pre
+
+                data
+                {
+                    language        en-xa
+                    transliterate   NO
+                    expand_length   YES
+                }
+            }
+
+            :rewrite_language_key
+            {
+                plugin              replace_strings
+                phase               before_save_localized_file
+
+                data
+                {
+                    replace         `locpool\.Resources\["en`
+                                    `locpool\.Resources\["%LANG%`
+                }
+            }
+        }
+    }
+}

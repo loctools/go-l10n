@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Generated-By: Serge 1.2\n"
+
+#: File: strings.json
+#: ID: 4b420ad7a2dddfa6aad26fd16010415f
+msgctxt "Hello"
+msgid "Hello!"
+msgstr "Здравствуйте!"
+
+#. {N} is the number of messages
+#: File: strings.json
+#: ID: a55765c7209756dbb487fe20294bd92e
+msgctxt "YouHaveNMessages"
+msgid "You have {N:no messages|one message|{N} {N_PLURAL:message|messages}}"
+msgstr ""
+"У вас {N:сообщений нет|одно сообщение|{N} "
+"{N_PLURAL:сообщение|сообщения|сообщений}}"

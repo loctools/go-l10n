@@ -1,0 +1,10 @@
+{
+    "Hello": {
+        "message": "Hello!"
+    },
+    "YouHaveNMessages": {
+        "message":
+            "You have {N:no messages|one message|{N} {N_PLURAL:message|messages}}",
+        "description": "{N} is the number of messages"
+    }
+}

@@ -1,0 +1,9 @@
+{
+   "Hello" : {
+      "message" : "[Hello! xxxxx]"
+   },
+   "YouHaveNMessages" : {
+      "description" : "{N} is the number of messages",
+      "message" : "[You have {N:no messages|one message|{N} {N_PLURAL:message|messages}} xxxxxxxxxx xxxxxxxxxx xxxxxxxxxx ]"
+   }
+}

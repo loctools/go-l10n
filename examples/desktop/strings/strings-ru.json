@@ -1,0 +1,9 @@
+{
+   "Hello" : {
+      "message" : "Здравствуйте!"
+   },
+   "YouHaveNMessages" : {
+      "description" : "{N} is the number of messages",
+      "message" : "У вас {N:сообщений нет|одно сообщение|{N} {N_PLURAL:сообщение|сообщения|сообщений}}"
+   }
+}
