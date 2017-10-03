@@ -13,16 +13,16 @@ type Context struct {
 	plurr *plurr.Plurr
 }
 
-// GetLanguage returns the current language set for the context.
+// GetLanguage returns the current language of the context.
 func (lc *Context) GetLanguage() string {
 	return lc.lang
 }
 
 // GetContext returns a context for another language
-// withing the same localization pool. This can be useful to
-// switch the language within the same pool (think of it
-// as of a `SetLanguage()` function which returns a new context
-// without changing the previous one)
+// within the same localization pool. It can be used to
+// switch languages within the same pool (think of it
+// as of a `SetLanguage()` function which returns a new
+// context without changing the current one).
 func (lc *Context) GetContext(lang string) *Context {
 	return lc.pool.GetContext(lang)
 }
