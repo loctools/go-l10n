@@ -49,7 +49,7 @@ func (lc *Context) Tr(key string) string {
 func (lc *Context) Format(key string, params plurr.Params) string {
 	s, err := lc.plurr.Format(lc.Tr(key), params)
 	if err != nil {
-		return key
+		return key + ": " + err.Error()
 	}
 
 	return s
