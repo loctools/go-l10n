@@ -28,6 +28,14 @@ func GetBestLanguageFromHTTP(lp *loc.Pool, r *http.Request,
 		}
 	}
 
+	header := r.Header.Get("Accept-Language")
+
+	// If the header is empty, just return the default language.
+	if header == "" {
+		return lp.DefaultLanguage
+	}
+
+	// Otherwise, use language matcher to determine the best language.
 	tags := make([]language.Tag, len(lp.Resources))
 	i := 0
 	for lang := range lp.Resources {
@@ -36,7 +44,7 @@ func GetBestLanguageFromHTTP(lp *loc.Pool, r *http.Request,
 	}
 	matcher := language.NewMatcher(tags)
 
-	tags, _, err := language.ParseAcceptLanguage(r.Header.Get("Accept-Language"))
+	tags, _, err := language.ParseAcceptLanguage(header)
 	if err != nil {
 		return lp.DefaultLanguage
 	}
