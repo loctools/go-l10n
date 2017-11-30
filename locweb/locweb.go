@@ -2,6 +2,7 @@ package locweb
 
 import (
 	"net/http"
+	"sort"
 
 	"github.com/iafan/go-l10n/loc"
 	"golang.org/x/text/language"
@@ -36,11 +37,27 @@ func GetBestLanguageFromHTTP(lp *loc.Pool, r *http.Request,
 	}
 
 	// Otherwise, use language matcher to determine the best language.
-	tags := make([]language.Tag, len(lp.Resources))
+	// Sort language tags alphabetically, but place the default language
+	// to the beginning of the list, since the ordering of tags
+	// is important for the matcher.
+	langNames := make([]string, len(lp.Resources))
 	i := 0
 	for lang := range lp.Resources {
-		tags[i] = language.MustParse(lang)
+		if lang == lp.DefaultLanguage {
+			langNames[i] = "" // use an empty string to make it the first one
+		} else {
+			langNames[i] = lang
+		}
 		i++
+	}
+	sort.Strings(langNames)
+	if langNames[0] == "" {
+		langNames[0] = lp.DefaultLanguage // restore the actual language value
+	}
+
+	tags := make([]language.Tag, len(langNames))
+	for i := range langNames {
+		tags[i] = language.MustParse(langNames[i])
 	}
 	matcher := language.NewMatcher(tags)
 
