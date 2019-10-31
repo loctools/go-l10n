@@ -1,4 +1,4 @@
-Copyright (c) 2017 Igor Afanasyev, https://github.com/iafan/go-l10n
+Copyright (c) 2017-2019 Igor Afanasyev, https://github.com/loctools/go-l10n
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
